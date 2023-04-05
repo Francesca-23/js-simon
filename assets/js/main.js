@@ -13,7 +13,8 @@
     -ciclo for per generare 5 prompt
 
 4-Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-    -if(array[num] == num inseriti nel prompt){
+    -ciclo
+    -if(array[num].includes(num inseriti nel prompt)){
         stampare il num
     }
 */
@@ -30,8 +31,7 @@ let arrayNum = []
 
 for(let i = 0; arrayNum.length < 5; i++){
     
-    arrayNum.push(random())
-    
+    arrayNum.push(random());   
     document.querySelector('ul').innerHTML += `<li>${arrayNum[i]}</li>`
 }
 
@@ -42,25 +42,30 @@ let timer = setTimeout(function(){
 }, 3000)
 
 
-
-
+//mostro i 5 prompt e poi confronto gli array
 let timer2 = setTimeout(function(){
 
     let arrayPrompt = []
 
-    let numeriUtente
-
-    for(let i = 0; i < 5; i++){
-        numeriUtente = prompt('Inserisci il numero visualizzato')
+    for(let i = 0; arrayPrompt.length < 5; i++){
+        let numeriUtente = parseInt(prompt('Inserisci il numero visualizzato'));
         arrayPrompt.push(numeriUtente)
     }
 
-    // if(arrayNum[0] == arrayPrompt[0]){
-    //     console.log(numeriUtente)
-    // }
-    
+    let numeriGiusti = []
+
+    for(let i = 0; i < arrayPrompt.length; i++){
+
+        if(arrayNum.includes(arrayPrompt[i])){
+            numeriGiusti.push(arrayPrompt[i])
+        }
+    } 
+
+    document.querySelector('#risultato').innerHTML =`I numeri indovinati sono: ${numeriGiusti}`
 
 }, 4000)
+
+
 
 
 
